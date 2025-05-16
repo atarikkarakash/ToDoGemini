@@ -4,11 +4,11 @@ from pydantic import BaseModel, Field
 from pydantic_core.core_schema import none_schema
 from sqlalchemy.orm import Session
 from starlette import status
-from models import Base, Todo
-from database import engine, SessionLocal
+from ..models import Base, Todo
+from ..database import engine, SessionLocal
 from typing import Annotated
-from routers.auth import router as auth_router, router
-from routers.auth import get_current_user
+from ..routers.auth import router as auth_router, router
+from ..routers.auth import get_current_user
 from fastapi.templating import Jinja2Templates
 from starlette.responses import RedirectResponse
 from dotenv import load_dotenv
@@ -24,7 +24,7 @@ router = APIRouter(
     tags=["Todo"]
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 class TodoRequest(BaseModel):
     title: str = Field(min_length=3)

@@ -6,9 +6,9 @@ from passlib.handlers.bcrypt import bcrypt
 from sqlalchemy.orm import Session
 from starlette.datastructures import Secret
 from datetime import timedelta, datetime, timezone
-from database import SessionLocal
+from ..database import SessionLocal
 from pydantic import BaseModel
-from models import User
+from ..models import User
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2AuthorizationCodeBearer, OAuth2PasswordBearer
 from jose import jwt, JWTError
@@ -24,7 +24,7 @@ router = APIRouter(
     tags=["Authentication"]
 )
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 SECRET_KEY = "3a2fck87fddnvr4i0y3xs9pbultzqdst6l0jivcm19w7l8l3nzlnho5syfs5119x"
 ALGORITHM = "HS256"
